@@ -41,6 +41,54 @@
         color:white;
         padding: 5px;
         }
+      .container {
+          max-width: 600px;
+          margin: 0; /* Remove auto margin to align left */
+          background-color: black;
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          text-align: left; /* Align text to left */
+      }
+
+      h1 {
+          margin-bottom: 20px;
+      }
+
+      form {
+          margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      textarea {
+          width: calc(100% - 22px); /* Adjust width for padding */
+          padding: 10px;
+          margin: 10px 0;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box; /* Include padding in width calculation */
+      }
+
+      button {
+          padding: 10px 15px;
+          border: none;
+          background-color: #5cb85c;
+          color: white;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      .comments {
+          border-top: 1px solid #ccc;
+          padding-top: 20px;
+      }
+
+      .comment {
+          margin-bottom: 10px;
+          padding: 10px;
+          background-color: #f9f9f9;
+          border-radius: 5px;
+      }
     </style>
   </head>
   <body>
@@ -70,8 +118,18 @@ The Russian government has condemned the supply of military aid to Ukraine. Russ
     <iframe width="430" height="315"
       src="https://www.youtube.com/embed/gBeEQMg9meY?si=BntGEXq3VwyuVVAJ">
       </iframe>
-    <h2>Comment Down Your Opinion</h2>
-    <label for="form">Comment: </label><br>
-    <textarea id="form" name="form" rows="7" cols="100"></textarea><br>
-    <button id="button1">POST</button>
+    <div class="container">
+      <h1>Comment Section</h1>
+      <form method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <textarea name="comment" placeholder="Your Comment" required></textarea>
+          <button type="submit">Post Comment</button>
+      </form>
+      <div class="comments">
+          {% for comment in comments %}
+              <div class="comment">
+                  <strong>{{ comment.name }}</strong>
+                  <p>{{ comment.comment }}</p>
+              </div>
+          {% endfor %}
 </html>
